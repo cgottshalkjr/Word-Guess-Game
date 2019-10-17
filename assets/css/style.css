@@ -1,0 +1,26 @@
+header {
+    
+    border-bottom: 5px solid black;
+    width: 100%;
+    height: 200px;
+    margin: 0 auto;
+    padding: 0;
+    
+    
+}
+
+.wordDisplay {
+    float: left;
+    border: 5px solid black;
+    margin: 30px;
+    width: 300px;
+    height: 300px;
+}
+
+.wrongLetters {
+    
+    border: 5px solid black;
+    margin: 0 auto;
+    width: 300px;
+    height: 300px;
+}
