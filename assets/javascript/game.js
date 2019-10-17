@@ -1,13 +1,14 @@
 
 // Creating array storing all Word Guess answers.
 var kaiju = ["godzilla", "gigan", "hedorah", "ghidorah", "destroyah", "mothra", "rodan", "mechagodzilla", "kumonga", "kingkong"];
-//Choosing a random word from the Kaiju array    //Not seeing how this is working right with the loop right now
+//Choosing a random word from the Kaiju array    
 var randomWord = Math.floor(Math.random() * kaiju.length);
 var wordGuess = kaiju[randomWord];
 var wins = 0;
 var chancesLeft = 10;
 var empty = [];
 var wrongGuess = [];
+var letterTally = 0;
 
 console.log(wordGuess);
 
@@ -24,11 +25,14 @@ for (var i = 0; i < wordGuess.length; i++) {
 
 
 
-var key = document.getElementById("wordDisplay")
-var wrong = document.getElementById("wrongLetters")
+var keyPress = document.getElementById("wordDisplay");
+var wrong = document.getElementById("wrongLetters");
+var chances = document.getElementById("chances");
+var victory = document.getElementById("winWin")
 
 
-key.textContent = empty.join(" ");
+
+keyPress.textContent = empty.join(" ");
 
 document.onkeyup = function (event) {
 
@@ -40,14 +44,18 @@ document.onkeyup = function (event) {
         wrongGuess.push(event.key);
         wrong.textContent = wrongGuess.join(" ");
         chancesLeft--; 
+        chances.textContent = chancesLeft;
     } else {
         for (var j = 0; j < wordGuess.length; j++) {
             if (wordGuess[j] === event.key) {
                 empty[j] = event.key;
-                key.textContent = empty.join(" ");
+                keyPress.textContent = empty.join(" ");
+                letterTally++;
             }
-        }
-    }
+        } if (wordGuess.length === letterTally) {
+            wins++;
+        } 
+    }  
 
 
 
