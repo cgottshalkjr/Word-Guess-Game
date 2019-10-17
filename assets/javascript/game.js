@@ -6,8 +6,8 @@ var randomWord = Math.floor(Math.random() * kaiju.length);
 var wordGuess = kaiju[randomWord];
 var wins = 0;
 var chancesLeft = 10;
-// var display = [];
 var empty = [];
+var wrongGuess = [];
 
 console.log(wordGuess);
 
@@ -25,32 +25,39 @@ for (var i = 0; i < wordGuess.length; i++) {
 
 
 var key = document.getElementById("wordDisplay")
+var wrong = document.getElementById("wrongLetters")
+
 
 key.textContent = empty.join(" ");
 
 document.onkeyup = function (event) {
 
-  
-
-   console.log(event.key)
-
-   for (var j = 0; j < wordGuess.length; j++) {
-       if (wordGuess[j] === event.key) {
-           empty[j] = event.key;
-           key.textContent = empty.join(" ");
-
-       }
-   }
 
 
+    console.log(event.key)
 
-   
+    if (wordGuess.includes(event.key) == false) {
+        wrongGuess.push(event.key);
+        wrong.textContent = wrongGuess.join(" ");
+        chancesLeft--; 
+    } else {
+        for (var j = 0; j < wordGuess.length; j++) {
+            if (wordGuess[j] === event.key) {
+                empty[j] = event.key;
+                key.textContent = empty.join(" ");
+            }
+        }
+    }
 
 
 
 
-   
-    
+
+
+
+
+
+
 
 
 
