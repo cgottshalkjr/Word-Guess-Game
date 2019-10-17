@@ -9,7 +9,7 @@ header {
     
 }
 
-.wordDisplay {
+.gamebox1 {
     float: left;
     border: 5px solid black;
     margin: 30px;
@@ -17,7 +17,15 @@ header {
     height: 300px;
 }
 
-.wrongLetters {
+#wordDisplay {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+
+#wrongLetters {
     
     border: 5px solid black;
     margin: 0 auto;
