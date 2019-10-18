@@ -1,6 +1,20 @@
+function resetGame() {
+    randomWord = Math.floor(Math.random() * kaiju.length);
+    wordGuess = kaiju[randomWord];
+    chancesLeft = 10;
+    empty = [];
+    for (var i = 0; i < wordGuess.length; i++) {
+        empty.push("_");
+    }
+    wrongGuess = [];
+    letterTally = 0;
+}
 
+
+// Taking out Godzilla for now because I can't figure out how to make letterTally not count the L's together
 // Creating array storing all Word Guess answers.
-var kaiju = ["godzilla", "gigan", "hedorah", "ghidorah", "destroyah", "mothra", "rodan", "mechagodzilla", "kumonga", "kingkong"];
+var kaiju = ["gorosaurus", "gigan", "hedorah", "ghidorah", "destroyah", "mothra", "rodan", "anguirius", "kumonga", "kingkong"];
+
 //Choosing a random word from the Kaiju array    
 var randomWord = Math.floor(Math.random() * kaiju.length);
 var wordGuess = kaiju[randomWord];
@@ -14,8 +28,7 @@ console.log(wordGuess);
 
 
 
-// Created a for loop and an empty array to add _ _ _ to it for the empty letters / not sure which loop makes sense
-// Do I have ot put this in a function?????????????????
+// Created a for loop and an empty array to add _ _ _ to it for the empty letters 
 
 for (var i = 0; i < wordGuess.length; i++) {
     empty.push("_");
@@ -24,26 +37,27 @@ for (var i = 0; i < wordGuess.length; i++) {
 // console.log(empty);
 
 
-
+var startGame = document.getElementById("startGuess")
 var keyPress = document.getElementById("wordDisplay");
 var wrong = document.getElementById("wrongLetters");
 var chances = document.getElementById("chances");
 var victory = document.getElementById("winWin")
 
-
-
 keyPress.textContent = empty.join(" ");
+
+
+
 
 document.onkeyup = function (event) {
 
+    startGame.textContent = "";
 
-
-    console.log(event.key)
+    // console.log(event.key)
 
     if (wordGuess.includes(event.key) == false) {
         wrongGuess.push(event.key);
         wrong.textContent = wrongGuess.join(" ");
-        chancesLeft--; 
+        chancesLeft--;
         chances.textContent = chancesLeft;
     } else {
         for (var j = 0; j < wordGuess.length; j++) {
@@ -54,8 +68,8 @@ document.onkeyup = function (event) {
             }
         } if (wordGuess.length === letterTally) {
             wins++;
-        } 
-    }  
+        } victory.textContent = wins;
+    }
 
 
 
