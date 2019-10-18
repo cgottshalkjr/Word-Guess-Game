@@ -1,3 +1,4 @@
+// This function will reset everything after the the word is guessed correctly
 function resetGame() {
     randomWord = Math.floor(Math.random() * kaiju.length);
     wordGuess = kaiju[randomWord];
@@ -8,12 +9,24 @@ function resetGame() {
     }
     wrongGuess = [];
     letterTally = 0;
+    chances.textContent = chancesLeft;
+    wrong.textContent = wrongGuess.join(" ");
+    keyPress.textContent = empty.join(" ");
+    
+}
+
+//This will stop the game when the the number of guesses runs out
+function loseGame () {
+
 }
 
 
 // Taking out Godzilla for now because I can't figure out how to make letterTally not count the L's together
 // Creating array storing all Word Guess answers.
 var kaiju = ["gorosaurus", "gigan", "hedorah", "ghidorah", "destroyah", "mothra", "rodan", "anguirius", "kumonga", "kingkong"];
+
+alphaBet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
+"q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
 //Choosing a random word from the Kaiju array    
 var randomWord = Math.floor(Math.random() * kaiju.length);
@@ -37,11 +50,12 @@ for (var i = 0; i < wordGuess.length; i++) {
 // console.log(empty);
 
 
-var startGame = document.getElementById("startGuess")
+var startGame = document.getElementById("startGuess");
 var keyPress = document.getElementById("wordDisplay");
 var wrong = document.getElementById("wrongLetters");
 var chances = document.getElementById("chances");
-var victory = document.getElementById("winWin")
+var victory = document.getElementById("winWin");
+var youLose = document.getElementById("loss");
 
 keyPress.textContent = empty.join(" ");
 
@@ -68,7 +82,9 @@ document.onkeyup = function (event) {
             }
         } if (wordGuess.length === letterTally) {
             wins++;
+            resetGame();
         } victory.textContent = wins;
+        
     }
 
 
