@@ -35,7 +35,7 @@ alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n"
 var randomWord = Math.floor(Math.random() * kaiju.length);
 var wordGuess = kaiju[randomWord];
 var wins = 0;
-var loses = 0;
+var losses = 0;
 var chancesLeft = 10;
 var empty = [];
 var wrongGuess = [];
@@ -59,7 +59,7 @@ var keyPress = document.getElementById("wordDisplay");
 var wrong = document.getElementById("wrongLetters");
 var chances = document.getElementById("chances");
 var victory = document.getElementById("winDisplay");
-var youLose = document.getElementById("loss");
+var youLose = document.getElementById("lossDisplay");
 
 keyPress.textContent = empty.join(" ");
 
@@ -84,10 +84,20 @@ document.onkeyup = function (event) {
         
     //If key is pressed and isn't in wordGuess it goes to wrong letters and chances left goes down by 1
     if (wordGuess.includes(event.key) == false) {
-        wrongGuess.push(event.key);
-        wrong.textContent = wrongGuess.join(" ");
-        chancesLeft--;
-        chances.textContent = chancesLeft;
+        if(wrongGuess.includes(event.key) == false) {
+            wrongGuess.push(event.key);
+            wrong.textContent = wrongGuess.join(" ");
+            chancesLeft--;
+            chances.textContent = chancesLeft;
+
+            if (chancesLeft === 0){
+                losses++;
+                resetGame();
+                youLose.textContent = losses;
+                
+            }
+
+        }
     //if correct letter is guessed it replaces underscore   
     } else {
         for (var j = 0; j < wordGuess.length; j++) {
